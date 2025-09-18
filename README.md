@@ -30,7 +30,6 @@ agnoshealth/
 │ │ ├── main.py # FastAPI backend server
 │ │ ├── ai_symptom_picker.py # Symptom extraction/processing
 │ │ ├── seed.py # Script to seed the database
-│ │ ├── query.ipynb # Notebook for testing queries
 │ │ ├── symptoms.db # SQLite database for symptoms
 │ │
 │ ├── front-end/ # Frontend (Streamlit)
