@@ -9,6 +9,7 @@ It contains two main tasks:
 ---
 
 ## Project Structure
+```
 agnoshealth/
 │
 ├── Task_1/ # Chatbot implementation (RAG model)
@@ -40,3 +41,4 @@ agnoshealth/
 │
 ├── requirements.txt # Python dependencies
 └── README.md # Main project documentation
+```
