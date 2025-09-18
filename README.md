@@ -34,7 +34,6 @@ agnoshealth/
 │ │
 │ ├── front-end/ # Frontend (Streamlit)
 │ │ ├── main.py # Streamlit UI for user interaction
-│ │ ├── README.md # Task 2 frontend documentation
 │ │
 │ ├── README.md # Task 2 documentation
 │
