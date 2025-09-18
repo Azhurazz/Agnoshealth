@@ -16,9 +16,9 @@ agnoshealth/
 │ ├── rag_model/ # Prebuilt model & data store
 │ │ ├── index.faiss # FAISS vector index for similarity search
 │ │ ├── index.pkl # Pickled embeddings / model index
-│ │ ├── agnos_forums.csv # Forum dataset (CSV)
-│ │ ├── agnos_forums.json # Forum dataset (JSON)
 │ │
+│ ├── agnos_forums.csv # Forum dataset (CSV)
+│ ├── agnos_forums.json # Forum dataset (JSON)
 │ ├── ask_answer.py # Q&A pipeline script
 │ ├── main.py # Entry point to run chatbot
 │ ├── train_model.py # Script to train the chatbot
