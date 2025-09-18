@@ -3,7 +3,7 @@ import ast
 import sqlite3
 import re
 
-# ========== Load Data ==========
+# Load Data
 df = pd.read_csv("ai_symptom_picker.csv")
 df["summary"] = df["summary"].apply(ast.literal_eval)
 
@@ -19,7 +19,7 @@ all_symptoms = sorted(set(s for sublist in all_symptoms_lists for s in sublist))
 # Thai-only symptoms
 thai_symptoms = [s for s in all_symptoms if any("\u0e00" <= ch <= "\u0e7f" for ch in s)]
 
-# ========== Category Mapping (English ↔ Thai) ==========
+# Category Mapping (English ↔ Thai)
 CATEGORY_MAP = {
     "Ache": "อาการปวด",
     "Rash": "ผื่น",
@@ -41,7 +41,7 @@ CATEGORY_MAP = {
     "General": "ทั่วไป",   # will be filled later
 }
 
-# ========== Categorization Rules ==========
+# Categorization Rules
 rules = {
     "Ache":       lambda s: s.startswith("ปวด"),
     "Cough":      lambda s: "ไอ" in s,
@@ -74,13 +74,13 @@ categories["General"] = [s for s in thai_symptoms if s not in used]
 if "General" not in categories:
     categories["General"] = []
 
-# ========== Validation / Cleaning ==========
+# Validation / Cleaning
 def clean_symptom(symptom: str):
     parts = re.findall(r'(?:ปวด\w+|คอ\w*|ตา\w*|ผื่น\w*|ไข้\w*|หายใจ\w*)', symptom)
     return parts if parts and "".join(parts) == symptom else [symptom]
 
 cleaned_symptoms = []
-for cat in CATEGORY_MAP.keys():  # keep order, ensure General included
+for cat in CATEGORY_MAP.keys():
     symptoms = categories.get(cat, [])
     if symptoms:
         for s in symptoms:
@@ -90,7 +90,7 @@ for cat in CATEGORY_MAP.keys():  # keep order, ensure General included
         # Insert empty marker row so category still exists in DB
         cleaned_symptoms.append((cat, CATEGORY_MAP[cat], ""))
 
-# ========== Save to SQLite ==========
+# Save to SQLite
 with sqlite3.connect("symptoms.db") as conn:
     conn.execute("DROP TABLE IF EXISTS symptoms")
     conn.execute("""
@@ -108,4 +108,4 @@ with sqlite3.connect("symptoms.db") as conn:
 
     conn.executemany("INSERT INTO symptoms (category_en, category_th, symptom) VALUES (?, ?, ?)", sorted_data)
 
-print("✅ Seed completed: saved symptoms into symptoms.db (English + Thai categories)")
+print("Seed completed: saved symptoms into symptoms.db (English + Thai categories)")
