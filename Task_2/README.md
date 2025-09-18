@@ -30,13 +30,13 @@ pip install -r requirements.txt
 
 ### 2. Seed the Database
 ```bash
-cd back-end
+cd Task_2/back-end
 python seed.py
 ```
 
 ### 3. Start the Backend (FastAPI)
 ```bash
-cd back-end
+cd Task_2/back-end
 uvicorn main:app --host 127.0.0.1 --port 8001 --reload
 ``` 
 can test search using API as
@@ -44,7 +44,7 @@ http://127.0.0.1:8001/search/?keyword=ผื่น
 
 ### 4. Start the Frontend (Streamlit)
 ```bash
-cd front-end
+cd Task_2/front-end
 streamlit run main.py --server.port 8000
 ```
 
