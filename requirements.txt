@@ -18,5 +18,4 @@ fastapi
 uvicorn 
 streamlit 
 pandas 
-re 
 requests
